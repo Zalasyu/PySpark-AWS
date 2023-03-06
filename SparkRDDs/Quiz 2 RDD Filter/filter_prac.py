@@ -1,7 +1,7 @@
 import random
 from pyspark import SparkConf, SparkContext
 
-conf = SparkConf().setAppName("Quiz 2").setMaster(
+conf = SparkConf().setAppName("Filter Practice").setMaster(
     "local[*]").set("spark.driver.cores", "2").set("spark.driver.memory", "2g")
 
 sc = SparkContext.getOrCreate(conf=conf)
@@ -21,5 +21,7 @@ rdd = sc.textFile("numbers.txt")
 # Filter the RDD to only contain numbers divisible by 2
 rdd2 = rdd.filter(lambda x: int(x) % 2 == 0)
 
+rdd3 = rdd2.distinct()
+
 # Print the first 10 numbers in the RDD
-print(rdd2.take(10))
+print(rdd3.collect())
