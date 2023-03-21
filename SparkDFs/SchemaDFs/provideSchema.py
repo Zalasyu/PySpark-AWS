@@ -15,7 +15,7 @@ schema = StructType([
 spark = SparkSession.builder.appName("provideSchema").getOrCreate()
 
 df = spark.read.csv("../Data/StudentData.csv",
-                    header=True, inferSchema=True).cache()
+                    header=True, schema=schema).cache()
 
 df.show()
 
